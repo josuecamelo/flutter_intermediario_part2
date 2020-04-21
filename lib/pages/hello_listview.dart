@@ -1,3 +1,5 @@
+import 'package:aula01/pages/dog_page.dart';
+import 'package:aula01/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class Dog {
@@ -18,80 +20,88 @@ class _HelloListViewState extends State<HelloListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("List View"),
-          actions: <Widget>[
-            IconButton(icon: Icon(Icons.list), onPressed: (){
+      appBar: AppBar(
+        title: Text("List View"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.list),
+            onPressed: () {
               print("Lista");
               setState(() {
                 _gridView = false;
               });
-            },),
-            IconButton(icon: Icon(Icons.grid_on), onPressed: (){
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.grid_on),
+            onPressed: () {
               print("Grid");
               setState(() {
                 _gridView = true;
               });
-            },)
-          ],
-        ),
-        body: _body(),
+            },
+          )
+        ],
+      ),
+      body: _body(),
     );
   }
 
   _body() {
     List<Dog> dogs = [
-      Dog("Jack Russel","assets/images/dog1.png"),
-      Dog("Labrador","assets/images/dog2.png"),
-      Dog("Pug","assets/images/dog3.png"),
-      Dog("Rottweiler","assets/images/dog4.png"),
-      Dog("Pastor","assets/images/dog5.png"),
+      Dog("Jack Russel", "assets/images/dog1.png"),
+      Dog("Labrador", "assets/images/dog2.png"),
+      Dog("Pug", "assets/images/dog3.png"),
+      Dog("Rottweiler", "assets/images/dog4.png"),
+      Dog("Pastor", "assets/images/dog5.png"),
     ];
 
-
-    if(_gridView){
+    if (_gridView) {
       return GridView.builder(
           itemCount: dogs.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          itemBuilder: (BuildContext context, int index){
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          itemBuilder: (BuildContext context, int index) {
             return _itemView(dogs, index);
-          }
-      );
+          });
     } else {
       return ListView.builder(
           itemExtent: 350,
           itemCount: dogs.length,
-          itemBuilder: (BuildContext context, int index){
+          itemBuilder: (BuildContext context, int index) {
             return _itemView(dogs, index);
-          }
-      );
+          });
     }
   }
 
-  Stack _itemView(List<Dog> dogs, int index) {
-     Dog dog = dogs[index];
+  _itemView(List<Dog> dogs, int index) {
+    Dog dog = dogs[index];
 
-    //return _img(dog.foto);
-    return Stack(
-      fit: StackFit.expand,
-      children: <Widget>[
-        _img(dog.foto),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Container(
-            margin: EdgeInsets.all(12),
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.black45,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            child: Text(
-              dog.nome,
-              style: TextStyle(fontSize: 26, color: Colors.white),
+    return GestureDetector(
+      onTap: () {
+        push(context, DogPage(dog));
+      },
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          _img(dog.foto),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              margin: EdgeInsets.all(12),
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.black45,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Text(
+                dog.nome,
+                style: TextStyle(fontSize: 26, color: Colors.white),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
