@@ -27,9 +27,9 @@ class HelloListView extends StatelessWidget {
       Dog("Pastor","assets/images/dog5.png"),
     ];
 
-    return ListView.builder(
+    return GridView.builder(
         itemCount: dogs.length,
-        itemExtent: 300,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         itemBuilder: (BuildContext context, int index){
           Dog dog = dogs[index];
 
@@ -38,11 +38,19 @@ class HelloListView extends StatelessWidget {
             fit: StackFit.expand,
             children: <Widget>[
               _img(dog.foto),
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  dog.nome,
-                  style: TextStyle(fontSize: 26, color: Colors.white),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.all(12),
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black45,
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  child: Text(
+                    dog.nome,
+                    style: TextStyle(fontSize: 26, color: Colors.white),
+                  ),
                 ),
               ),
             ],
