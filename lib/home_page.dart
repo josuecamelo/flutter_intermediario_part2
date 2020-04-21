@@ -1,3 +1,4 @@
+import 'package:aula01/drawer_list.dart';
 import 'package:aula01/pages/hello_listview.dart';
 import 'package:aula01/pages/hello_page2.dart';
 import 'package:aula01/pages/hello_page3.dart';
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
               _onClickFab();
             },
           ),
-          SizedBox(
+          /*SizedBox(
             width: 8,
             height: 8,
           ),
@@ -32,9 +33,10 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               _onClickFab();
             },
-          )
+          )*/
         ],
       ),
+      drawer:DrawerList()
     );
   }
 
@@ -181,5 +183,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _onClickFab() {}
+  _onClickFab() {
+    print("Adicionar");
+  }
 }
