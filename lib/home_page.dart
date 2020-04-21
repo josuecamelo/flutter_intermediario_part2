@@ -4,6 +4,7 @@ import 'package:aula01/pages/hello_page3.dart';
 import 'package:aula01/utils/nav.dart';
 import 'package:aula01/widgets/blueButton.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -126,7 +127,17 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _onClickToast() {}
+  _onClickToast() {
+    Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
 
   _img(String img) {
     return Image.asset(
