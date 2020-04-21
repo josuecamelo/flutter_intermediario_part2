@@ -23,11 +23,15 @@ class _HelloListViewState extends State<HelloListView> {
           actions: <Widget>[
             IconButton(icon: Icon(Icons.list), onPressed: (){
               print("Lista");
-              _gridView = false;
+              setState(() {
+                _gridView = false;
+              });
             },),
             IconButton(icon: Icon(Icons.grid_on), onPressed: (){
               print("Grid");
-              _gridView = true;
+              setState(() {
+                _gridView = true;
+              });
             },)
           ],
         ),
